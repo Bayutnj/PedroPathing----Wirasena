@@ -32,7 +32,14 @@ public class ShooterTune extends OpMode {
 
     @Override
     public void loop() {
+        PIDFCoefficients pidfCoefficients = new PIDFCoefficients(kP, kI,kD,kF);
+        ls.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, pidfCoefficients);
+
+//        if (gamepad1.y) {
         ls.setVelocity(target);
+//        } else {
+//            ls.setPower(0);
+//        }
 
         joinedTelemetry.addData("VELOCITY", ls.getVelocity());
         joinedTelemetry.addData("TARGET", target);
